@@ -7,9 +7,11 @@ Este directorio contiene los 5 laboratorios principales del curso, diseñados pa
 ## 📋 Lista de Labs
 
 ### [Lab 1. Keycloak + OAuth2 + PKCE](./lab-1-keycloak-oauth-pkce/)
+
 **Duración**: 2-3 horas  
 **Nivel**: Principiante-Intermedio  
 **Objetivos**:
+
 - Instalar y configurar Keycloak con Docker
 - Crear realm, clients y roles
 - Implementar Authorization Code + PKCE desde una SPA
@@ -20,9 +22,11 @@ Este directorio contiene los 5 laboratorios principales del curso, diseñados pa
 ---
 
 ### [Lab 2: API Gateway + Validación JWT](./lab-2-gateway-jwt-validation/)
+
 **Duración**: 2-3 horas  
 **Nivel**: Intermedio  
 **Objetivos**:
+
 - Crear API Gateway con YARP (.NET) o alternativa
 - Implementar middleware de validación JWT
 - Consumir JWKS endpoint
@@ -33,9 +37,11 @@ Este directorio contiene los 5 laboratorios principales del curso, diseñados pa
 ---
 
 ### [Lab 3: OPA + Políticas ABAC](./lab-3-opa-abac-policies/)
+
 **Duración**: 2-3 horas  
 **Nivel**: Intermedio-Avanzado  
 **Objetivos**:
+
 - Instalar Open Policy Agent
 - Escribir políticas en Rego
 - Implementar autorización basada en atributos (ABAC)
@@ -46,9 +52,11 @@ Este directorio contiene los 5 laboratorios principales del curso, diseñados pa
 ---
 
 ### [Lab 4: Refresh Tokens y Revocación](./lab-4-refresh-revocation/)
+
 **Duración**: 2 horas  
 **Nivel**: Intermedio  
 **Objetivos**:
+
 - Implementar refresh token flow
 - Almacenamiento seguro (httpOnly cookies)
 - Crear endpoint de revocación
@@ -59,9 +67,11 @@ Este directorio contiene los 5 laboratorios principales del curso, diseñados pa
 ---
 
 ### [Lab 5: Security Testing](./lab-5-security-testing/)
+
 **Duración**: 2-3 horas  
 **Nivel**: Avanzado  
 **Objetivos**:
+
 - Tests de seguridad: token tampering, replay, CSRF
 - Unit tests de validación de tokens
 - Integration tests de flujos OAuth2
@@ -99,6 +109,7 @@ Antes de comenzar los labs, asegúrate de tener instalado:
 ## 🚀 Quick Start
 
 Cada lab tiene su propia carpeta con:
+
 - `README.md` - Instrucciones paso a paso
 - `src/` - Código fuente completo
 - `docker-compose.yml` - Servicios necesarios
@@ -128,15 +139,18 @@ docker-compose up -d
 ## 🔍 Solución de Problemas Comunes
 
 ### Error: "Token signature invalid"
+
 - Verifica que el JWKS endpoint esté accesible
 - Revisa que el `iss` del token coincida con la configuración
 - Asegúrate de usar la clave pública correcta
 
 ### Error: "docker-compose not found"
+
 - Instala Docker Desktop
 - En Windows, reinicia después de instalar
 
 ### Error: "Port 8080 already in use"
+
 - Cambia el puerto en `docker-compose.yml`
 - O detén el servicio que usa ese puerto
 
@@ -154,6 +168,7 @@ docker-compose up -d
 ## ✅ Certificación de Completitud
 
 Considera un lab completado cuando:
+
 - [ ] Puedes ejecutar todo el flujo sin errores
 - [ ] Entiendes cada componente y su responsabilidad
 - [ ] Puedes explicar el código a otra persona

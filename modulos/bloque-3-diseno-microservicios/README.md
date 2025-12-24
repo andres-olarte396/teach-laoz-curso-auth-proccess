@@ -1,9 +1,11 @@
 # Bloque 3 — Diseño de Autenticación en Microservicios
 
 ## Objetivos del Bloque
+
 Decidir dónde validar tokens, dónde aplicar políticas de autorización, y cómo distribuir responsabilidades de seguridad en una arquitectura de microservicios.
 
 ## Duración estimada
+
 6-8 horas
 
 ---
@@ -11,11 +13,13 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 ## Contenido
 
 ### 1. [Arquitectura de Seguridad en Microservicios](./01-arquitectura-seguridad.md)
+
 - Desafíos de seguridad distribuida
 - Principios de Zero Trust
 - Defensa en profundidad
 
 ### 2. [Componentes Clave](./02-componentes-clave.md)
+
 - **Identity Provider (IdP)** / Authorization Server
 - **API Gateway** / Edge Proxy
 - **Service Mesh** (Istio, Linkerd)
@@ -24,6 +28,7 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 - **Key Management Service**
 
 ### 3. [API Gateway - Validación Primaria](./03-api-gateway.md)
+
 - Responsabilidades del gateway
 - Validación de tokens JWT
 - Rate limiting y throttling
@@ -31,12 +36,14 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 - ¿Qué NO debe hacer el gateway?
 
 ### 4. [Autorización a Nivel de Servicio](./04-autorizacion-servicio.md)
+
 - ¿Por qué los servicios deben validar?
 - Autorización basada en claims/scopes
 - Autorización fina (resource-level)
 - Integración con Policy Engines
 
 ### 5. [Patrones de Diseño](./05-patrones-diseno.md)
+
 - **Token Relay**: pasar token a través de servicios
 - **Token Exchange**: OAuth2 Token Exchange (RFC 8693)
 - **Backend for Frontend (BFF)**: patrón para SPAs
@@ -44,12 +51,14 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 - **Claims Enrichment**: agregar contexto al token
 
 ### 6. [Gestión de Claves (JWKS)](./06-gestion-claves.md)
+
 - JWKS endpoint
 - Rotación de claves
 - Caching de claves públicas
 - Estrategias de rollover
 
 ### 7. [Auditoría y Observabilidad](./07-auditoria-observabilidad.md)
+
 - Eventos críticos a registrar
 - Correlación de requests (trace-id)
 - Métricas de autenticación/autorización
@@ -99,6 +108,7 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 ## Patrones de Implementación
 
 ### Patrón 1. Gateway + Servicios (validación dual)
+
 ```
 ✅ Gateway: Valida token (firma, exp, iss, aud)
 ✅ Servicios: Validan scopes/roles + autorización fina
@@ -108,6 +118,7 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 **Desventajas:** Más latencia (doble validación)
 
 ### Patrón 2: Gateway único punto de validación
+
 ```
 ✅ Gateway: Validación completa
 ❌ Servicios: Confían en gateway, solo leen headers
@@ -117,6 +128,7 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 **Desventajas:** Si gateway falla, todos fallan; menos seguro
 
 ### Patrón 3: Service Mesh (mTLS)
+
 ```
 ✅ Istio/Linkerd: mTLS entre servicios
 ✅ Gateway: Valida token usuario
@@ -131,23 +143,28 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 ## Actividades Prácticas
 
 ### Ejercicio 1. Diseñar Arquitectura
+
 📝 [Ver ejercicio](./ejercicios/ejercicio-1-arquitectura.md)
 
 Diseña la arquitectura de seguridad para un sistema con:
+
 - 1 SPA frontend
 - 1 API Gateway
 - 3 microservicios (Users, Orders, Payments)
 - 1 IdP
 
 Responde:
+
 - ¿Dónde se valida el token?
 - ¿Qué headers pasa el gateway a los servicios?
 - ¿Cómo se autorizan acciones en cada servicio?
 
 ### Ejercicio 2: Flujo de Request Completo
+
 📝 [Ver ejercicio](./ejercicios/ejercicio-2-flujo-request.md)
 
 Documenta paso a paso qué ocurre cuando:
+
 ```
 POST /api/orders
 Authorization: Bearer eyJhbGc...
@@ -178,19 +195,23 @@ Al diseñar tu arquitectura de seguridad, verifica:
 ## Errores Comunes
 
 ❌ **Confiar ciegamente en el gateway**
+
 - Si el gateway tiene un bug, todo el sistema es vulnerable
 - Los servicios deben validar al menos roles/scopes
 
 ❌ **Pasar el token completo entre servicios internos**
+
 - Incrementa el payload innecesariamente
 - Riesgo de leakage si se loguea
 - Usa claims mínimos en headers
 
 ❌ **No planear rotación de claves**
+
 - Cuando rotes claves, todos los tokens antiguos fallarán
 - Necesitas soporte para múltiples claves activas (key rotation grace period)
 
 ❌ **Hardcodear URLs del IdP**
+
 - Usa discovery endpoint (`.well-known/openid-configuration`)
 - Facilita cambios de ambiente (dev/staging/prod)
 
@@ -207,6 +228,7 @@ Al diseñar tu arquitectura de seguridad, verifica:
 ## Evaluación
 
 Al completar este bloque deberías poder:
+
 - [ ] Diseñar una arquitectura de seguridad completa para microservicios
 - [ ] Decidir qué componente valida qué (separación de responsabilidades)
 - [ ] Configurar un API Gateway para validación de tokens

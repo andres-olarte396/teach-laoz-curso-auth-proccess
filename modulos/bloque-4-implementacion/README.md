@@ -1,9 +1,11 @@
 # Bloque 4 — Implementación Práctica (Paso a Paso)
 
 ## Objetivos del Bloque
+
 Implementar un sistema completo de autenticación y autorización con .NET 8, Keycloak, y componentes de infraestructura, desde cero hasta un entorno funcional con validación de tokens, políticas y auditoría.
 
 ## Duración estimada
+
 12-16 horas (hands-on intensivo)
 
 ---
@@ -11,6 +13,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ## Stack Tecnológico
 
 ### Componentes Principales
+
 - **Backend**: .NET 8 (ASP.NET Core)
 - **Identity Provider**: Keycloak (self-hosted) o Auth0/Okta (SaaS)
 - **API Gateway**: YARP (Yet Another Reverse Proxy - .NET)
@@ -20,6 +23,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 - **Observabilidad**: Prometheus + Grafana + Seq (logs)
 
 ### Alternativas (para otros stacks)
+
 - Node.js: Express/Koa + Passport + oidc-client
 - Java: Spring Boot + Spring Security OAuth2
 - Python: FastAPI + python-jose
@@ -29,6 +33,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ## Guía de Implementación Paso a Paso
 
 ### [Paso 1. Levantar Identity Provider](./paso-1-setup-idp.md)
+
 **Duración**: 1-2 horas
 
 - Instalar Keycloak con Docker Compose
@@ -39,6 +44,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 - Publicar JWKS endpoint
 
 **Entregables:**
+
 - `docker-compose.yml` con Keycloak
 - Realm export JSON
 - Documentación de configuración
@@ -46,6 +52,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ---
 
 ### [Paso 2: Configurar Clientes y Flujos OAuth2](./paso-2-oauth-flows.md)
+
 **Duración**: 2-3 horas
 
 - Configurar cliente para Authorization Code + PKCE (SPA)
@@ -55,6 +62,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 - Probar flujos con Postman/curl
 
 **Entregables:**
+
 - Colección Postman con flujos completos
 - Scripts de prueba
 - Documentación de endpoints
@@ -62,6 +70,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ---
 
 ### [Paso 3: Implementar API Gateway con YARP](./paso-3-api-gateway.md)
+
 **Duración**: 2-3 horas
 
 - Crear proyecto ASP.NET Core para Gateway
@@ -73,6 +82,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 - Implementar rate limiting
 
 **Entregables:**
+
 - Proyecto Gateway funcional
 - Configuración YARP
 - Middleware de autenticación
@@ -81,6 +91,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ---
 
 ### [Paso 4: Implementar Microservicios con Autorización](./paso-4-microservicios.md)
+
 **Duración**: 3-4 horas
 
 - Crear 2-3 microservicios de ejemplo
@@ -90,11 +101,13 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 - Integración con OPA para políticas complejas
 
 **Servicios de ejemplo:**
+
 - **Users Service**: CRUD de usuarios (solo admins)
 - **Orders Service**: crear/ver pedidos (solo owners o admins)
 - **Reports Service**: generar reportes (requiere scope específico)
 
 **Entregables:**
+
 - 3 proyectos .NET de microservicios
 - Políticas OPA en Rego
 - Tests de autorización
@@ -102,6 +115,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ---
 
 ### [Paso 5: Refresh Tokens y Revocación](./paso-5-refresh-revocation.md)
+
 **Duración**: 2 horas
 
 - Implementar refresh token flow
@@ -111,6 +125,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 - Manejo de refresh token rotation
 
 **Entregables:**
+
 - Endpoints de refresh y revoke
 - Documentación de flujo de logout
 - Tests de escenarios de revocación
@@ -118,6 +133,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ---
 
 ### [Paso 6: Auditoría y Logging](./paso-6-auditoria.md)
+
 **Duración**: 2 horas
 
 - Centralizar logs con Seq
@@ -131,6 +147,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 - Dashboard básico en Grafana
 
 **Entregables:**
+
 - Configuración de logging estructurado
 - Dashboard Grafana
 - Alertas básicas
@@ -138,6 +155,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ---
 
 ### [Paso 7: Operaciones y Seguridad](./paso-7-operaciones.md)
+
 **Duración**: 2 horas
 
 - Rotación de claves (simulación)
@@ -147,6 +165,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 - Checklist de hardening
 
 **Entregables:**
+
 - Scripts de rotación de claves
 - Configuración de health checks
 - Documentación operacional
@@ -154,6 +173,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ---
 
 ### [Paso 8: Testing de Seguridad](./paso-8-security-testing.md)
+
 **Duración**: 2-3 horas
 
 - Unit tests de validación de tokens
@@ -167,6 +187,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
   - Rate limiting bypass attempts
 
 **Entregables:**
+
 - Suite de tests completa
 - Reporte de vulnerabilidades encontradas
 - Fixes aplicados
@@ -227,6 +248,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 ## Docker Compose Completo
 
 Al final del bloque tendrás un `docker-compose.yml` con:
+
 - Keycloak
 - PostgreSQL (para Keycloak)
 - Gateway (.NET)
@@ -237,6 +259,7 @@ Al final del bloque tendrás un `docker-compose.yml` con:
 - Grafana
 
 Todo orquestado y funcional con un solo comando:
+
 ```bash
 docker-compose up -d
 ```
@@ -273,6 +296,7 @@ docker-compose up -d
 ## Evaluación
 
 Al completar este bloque deberías:
+
 - [ ] Tener un sistema completo funcionando end-to-end
 - [ ] Poder explicar cada componente y su responsabilidad
 - [ ] Poder troubleshootear problemas de autenticación/autorización

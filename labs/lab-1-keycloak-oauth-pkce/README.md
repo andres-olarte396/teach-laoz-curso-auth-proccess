@@ -3,6 +3,7 @@
 ## 🎯 Objetivos
 
 Al finalizar este lab podrás:
+
 - Instalar y configurar Keycloak con Docker
 - Crear un realm y configurar clients
 - Implementar el flujo Authorization Code + PKCE
@@ -47,7 +48,7 @@ Al finalizar este lab podrás:
 ### 1.1 Crear docker-compose.yml
 
 ```yaml
-version: '3.8'
+version: "3.8"
 
 services:
   postgres:
@@ -99,6 +100,7 @@ docker-compose up -d
 Navega a: http://localhost:8080
 
 Credenciales:
+
 - Usuario: `admin`
 - Contraseña: `admin`
 
@@ -175,7 +177,7 @@ npm install crypto-js
 Crea `src/pkce.js`:
 
 ```javascript
-import CryptoJS from 'crypto-js';
+import CryptoJS from "crypto-js";
 
 // Generar code_verifier aleatorio
 export function generateCodeVerifier() {
@@ -193,9 +195,9 @@ export function generateCodeChallenge(verifier) {
 // Helper para encoding base64URL
 function base64URLEncode(str) {
   return btoa(String.fromCharCode.apply(null, new Uint8Array(str)))
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=/g, '');
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=/g, "");
 }
 
 // Generar state para CSRF protection
@@ -211,13 +213,17 @@ export function generateState() {
 Crea `src/Auth.js`:
 
 ```javascript
-import React, { useEffect, useState } from 'react';
-import { generateCodeVerifier, generateCodeChallenge, generateState } from './pkce';
+import React, { useEffect, useState } from "react";
+import {
+  generateCodeVerifier,
+  generateCodeChallenge,
+  generateState,
+} from "./pkce";
 
-const KEYCLOAK_URL = 'http://localhost:8080';
-const REALM = 'demo';
-const CLIENT_ID = 'spa-client';
-const REDIRECT_URI = 'http://localhost:3000/callback';
+const KEYCLOAK_URL = "http://localhost:8080";
+const REALM = "demo";
+const CLIENT_ID = "spa-client";
+const REDIRECT_URI = "http://localhost:3000/callback";
 
 function Auth() {
   const [user, setUser] = useState(null);
@@ -226,8 +232,8 @@ function Auth() {
   useEffect(() => {
     // Verificar si estamos en el callback
     const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
-    const state = params.get('state');
+    const code = params.get("code");
+    const state = params.get("state");
 
     if (code && state) {
       handleCallback(code, state);
@@ -241,18 +247,20 @@ function Auth() {
     const state = generateState();
 
     // Guardar en sessionStorage
-    sessionStorage.setItem('code_verifier', codeVerifier);
-    sessionStorage.setItem('state', state);
+    sessionStorage.setItem("code_verifier", codeVerifier);
+    sessionStorage.setItem("state", state);
 
     // Construir authorization URL
-    const authUrl = new URL(`${KEYCLOAK_URL}/realms/${REALM}/protocol/openid-connect/auth`);
-    authUrl.searchParams.append('client_id', CLIENT_ID);
-    authUrl.searchParams.append('redirect_uri', REDIRECT_URI);
-    authUrl.searchParams.append('response_type', 'code');
-    authUrl.searchParams.append('scope', 'openid profile email');
-    authUrl.searchParams.append('code_challenge', codeChallenge);
-    authUrl.searchParams.append('code_challenge_method', 'S256');
-    authUrl.searchParams.append('state', state);
+    const authUrl = new URL(
+      `${KEYCLOAK_URL}/realms/${REALM}/protocol/openid-connect/auth`,
+    );
+    authUrl.searchParams.append("client_id", CLIENT_ID);
+    authUrl.searchParams.append("redirect_uri", REDIRECT_URI);
+    authUrl.searchParams.append("response_type", "code");
+    authUrl.searchParams.append("scope", "openid profile email");
+    authUrl.searchParams.append("code_challenge", codeChallenge);
+    authUrl.searchParams.append("code_challenge_method", "S256");
+    authUrl.searchParams.append("state", state);
 
     // Redirect
     window.location.href = authUrl.toString();
@@ -260,84 +268,101 @@ function Auth() {
 
   const handleCallback = async (code, state) => {
     // Validar state (CSRF protection)
-    const savedState = sessionStorage.getItem('state');
+    const savedState = sessionStorage.getItem("state");
     if (state !== savedState) {
-      console.error('State mismatch - possible CSRF attack');
+      console.error("State mismatch - possible CSRF attack");
       return;
     }
 
     // Recuperar code_verifier
-    const codeVerifier = sessionStorage.getItem('code_verifier');
+    const codeVerifier = sessionStorage.getItem("code_verifier");
 
     // Intercambiar código por tokens
     const tokenUrl = `${KEYCLOAK_URL}/realms/${REALM}/protocol/openid-connect/token`;
     const body = new URLSearchParams({
-      grant_type: 'authorization_code',
+      grant_type: "authorization_code",
       client_id: CLIENT_ID,
       redirect_uri: REDIRECT_URI,
       code: code,
-      code_verifier: codeVerifier
+      code_verifier: codeVerifier,
     });
 
     try {
       const response = await fetch(tokenUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body,
       });
 
       const tokens = await response.json();
       setTokens(tokens);
 
       // Decodificar ID token
-      const idTokenPayload = JSON.parse(atob(tokens.id_token.split('.')[1]));
+      const idTokenPayload = JSON.parse(atob(tokens.id_token.split(".")[1]));
       setUser(idTokenPayload);
 
       // Limpiar sessionStorage
-      sessionStorage.removeItem('code_verifier');
-      sessionStorage.removeItem('state');
+      sessionStorage.removeItem("code_verifier");
+      sessionStorage.removeItem("state");
 
       // Limpiar URL
-      window.history.replaceState({}, document.title, '/');
+      window.history.replaceState({}, document.title, "/");
     } catch (error) {
-      console.error('Error exchanging code for tokens:', error);
+      console.error("Error exchanging code for tokens:", error);
     }
   };
 
   const logout = () => {
-    const logoutUrl = new URL(`${KEYCLOAK_URL}/realms/${REALM}/protocol/openid-connect/logout`);
-    logoutUrl.searchParams.append('post_logout_redirect_uri', 'http://localhost:3000');
-    logoutUrl.searchParams.append('id_token_hint', tokens.id_token);
-    
+    const logoutUrl = new URL(
+      `${KEYCLOAK_URL}/realms/${REALM}/protocol/openid-connect/logout`,
+    );
+    logoutUrl.searchParams.append(
+      "post_logout_redirect_uri",
+      "http://localhost:3000",
+    );
+    logoutUrl.searchParams.append("id_token_hint", tokens.id_token);
+
     window.location.href = logoutUrl.toString();
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: "20px" }}>
       <h1>Keycloak OAuth2 + PKCE Demo</h1>
-      
+
       {!user ? (
         <button onClick={login}>Login con Keycloak</button>
       ) : (
         <div>
           <h2>¡Bienvenido, {user.name || user.preferred_username}!</h2>
           <button onClick={logout}>Logout</button>
-          
+
           <h3>User Info:</h3>
           <pre>{JSON.stringify(user, null, 2)}</pre>
-          
+
           <h3>Tokens:</h3>
           <div>
             <h4>ID Token:</h4>
-            <textarea readOnly value={tokens.id_token} style={{ width: '100%', height: '100px' }} />
-            
+            <textarea
+              readOnly
+              value={tokens.id_token}
+              style={{ width: "100%", height: "100px" }}
+            />
+
             <h4>Access Token:</h4>
-            <textarea readOnly value={tokens.access_token} style={{ width: '100%', height: '100px' }} />
-            
+            <textarea
+              readOnly
+              value={tokens.access_token}
+              style={{ width: "100%", height: "100px" }}
+            />
+
             {tokens.refresh_token && (
               <>
                 <h4>Refresh Token:</h4>
-                <textarea readOnly value={tokens.refresh_token} style={{ width: '100%', height: '100px' }} />
+                <textarea
+                  readOnly
+                  value={tokens.refresh_token}
+                  style={{ width: "100%", height: "100px" }}
+                />
               </>
             )}
           </div>
@@ -353,8 +378,8 @@ export default Auth;
 ### 3.4 Actualizar App.js
 
 ```javascript
-import './App.css';
-import Auth from './Auth';
+import "./App.css";
+import Auth from "./Auth";
 
 function App() {
   return (
@@ -381,7 +406,6 @@ Navega a http://localhost:3000
 
 1. **Clic en "Login con Keycloak"**
    - Serás redirigido a Keycloak
-   
 2. **Ingresar credenciales**:
    - Usuario: `testuser`
    - Contraseña: `password123`
@@ -407,6 +431,7 @@ Navega a http://localhost:3000
 ### Analizar ID Token
 
 El ID Token debe contener claims como:
+
 ```json
 {
   "exp": 1234567890,
@@ -459,12 +484,15 @@ Si la firma es válida, verás ✅ "Signature Verified"
 ## 🐛 Troubleshooting
 
 ### Error: "Invalid redirect_uri"
+
 - Verifica que en Keycloak el client tenga `http://localhost:3000/*` en Valid redirect URIs
 
 ### Error: "CORS error"
+
 - Verifica Web origins en el client: `http://localhost:3000`
 
 ### Error: "Invalid code_verifier"
+
 - Asegúrate de estar usando el mismo code_verifier que generaste
 
 ---
@@ -472,6 +500,7 @@ Si la firma es válida, verás ✅ "Signature Verified"
 ## 📚 Próximos Pasos
 
 Una vez completado este lab:
+
 - Procede al [Lab 2: API Gateway + JWT Validation](../lab-2-gateway-jwt-validation/)
 - Experimenta agregando más scopes personalizados
 - Prueba diferentes roles y observa cómo cambian los tokens

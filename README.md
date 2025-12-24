@@ -6,7 +6,7 @@
 
 ## 📖 Sobre este Curso
 
-Este curso te enseña desde los fundamentos conceptuales hasta la implementación práctica de sistemas completos de autenticación y autorización para APIs modernas. 
+Este curso te enseña desde los fundamentos conceptuales hasta la implementación práctica de sistemas completos de autenticación y autorización para APIs modernas.
 
 **Stack principal**: .NET 8, Keycloak, OPA, YARP, Docker
 
@@ -26,13 +26,14 @@ Al completar este curso serás capaz de:
 ✅ Configurar API Gateways con validación de tokens  
 ✅ Implementar refresh tokens y revocación  
 ✅ Realizar testing de seguridad en flujos de autenticación  
-✅ Operar sistemas auth en producción con rotación de claves  
+✅ Operar sistemas auth en producción con rotación de claves
 
 ---
 
 ## 📚 Contenido del Curso
 
 ### [Bloque 1. Fundamentos](./modulos/bloque-1-fundamentos/)
+
 **Duración**: 4-6 horas
 
 - Autenticación vs Autorización
@@ -45,6 +46,7 @@ Al completar este curso serás capaz de:
 ---
 
 ### [Bloque 2: Protocolos y Formatos](./modulos/bloque-2-protocolos/)
+
 **Duración**: 8-10 horas
 
 - OAuth 2.0: grants (Authorization Code, PKCE, Client Credentials)
@@ -58,6 +60,7 @@ Al completar este curso serás capaz de:
 ---
 
 ### [Bloque 3: Diseño en Microservicios](./modulos/bloque-3-diseno-microservicios/)
+
 **Duración**: 6-8 horas
 
 - Arquitectura de seguridad distribuida
@@ -71,9 +74,11 @@ Al completar este curso serás capaz de:
 ---
 
 ### [Bloque 4: Implementación Práctica](./modulos/bloque-4-implementacion/)
+
 **Duración**: 12-16 horas (hands-on intensivo)
 
 **Paso a paso**:
+
 1. Levantar Keycloak con Docker
 2. Configurar OAuth2 flows (PKCE, Client Credentials)
 3. Implementar API Gateway con YARP
@@ -88,6 +93,7 @@ Al completar este curso serás capaz de:
 ---
 
 ### [Bloque 5: Políticas Avanzadas](./modulos/bloque-5-politicas-avanzadas/)
+
 **Duración**: 6-8 horas
 
 - ABAC avanzado (atributos de usuario, recurso, contexto)
@@ -104,18 +110,23 @@ Al completar este curso serás capaz de:
 ## 🧪 Laboratorios Prácticos
 
 ### [Lab 1. Keycloak + OAuth2 + PKCE](./labs/lab-1-keycloak-oauth-pkce/)
+
 Configura Keycloak, implementa Authorization Code + PKCE desde una SPA.
 
 ### [Lab 2: API Gateway + Validación JWT](./labs/lab-2-gateway-jwt-validation/)
+
 Crea gateway con YARP, valida tokens, consume JWKS.
 
 ### [Lab 3: OPA + Políticas ABAC](./labs/lab-3-opa-abac-policies/)
+
 Escribe políticas Rego, integra OPA con microservicios.
 
 ### [Lab 4: Refresh Tokens y Revocación](./labs/lab-4-refresh-revocation/)
+
 Implementa refresh flow completo y endpoints de revocación.
 
 ### [Lab 5: Security Testing](./labs/lab-5-security-testing/)
+
 Tests de seguridad: tampering, replay, CSRF, pentesting básico.
 
 📁 [Ver todos los labs](./labs/)
@@ -175,19 +186,14 @@ El contenido de este curso está basado en el [ROADMAP.md](./ROADMAP.md) origina
 ### Ruta de Aprendizaje Recomendada
 
 **Nivel Principiante**:
+
 1. Bloque 1. Fundamentos (conceptos)
 2. Bloque 2: Protocolos (OAuth2, JWT)
 3. Lab 1. Keycloak + PKCE
 
-**Nivel Intermedio**:
-4. Bloque 3: Diseño en Microservicios
-5. Bloque 4: Implementación (paso a paso)
-6. Labs 2-4: Gateway, OPA, Refresh tokens
+**Nivel Intermedio**: 4. Bloque 3: Diseño en Microservicios 5. Bloque 4: Implementación (paso a paso) 6. Labs 2-4: Gateway, OPA, Refresh tokens
 
-**Nivel Avanzado**:
-7. Bloque 5: Políticas Avanzadas
-8. Lab 5: Security Testing
-9. Implementar casos de uso reales
+**Nivel Avanzado**: 7. Bloque 5: Políticas Avanzadas 8. Lab 5: Security Testing 9. Implementar casos de uso reales
 
 ### Quick Start
 
@@ -291,6 +297,7 @@ Este es un proyecto educativo en evolución. Sugerencias y mejoras son bienvenid
 ## 🌟 Recursos Externos Recomendados
 
 ### Documentación Oficial
+
 - [OAuth 2.0 - RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)
 - [JWT - RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)
 - [PKCE - RFC 7636](https://datatracker.ietf.org/doc/html/rfc7636)
@@ -299,11 +306,13 @@ Este es un proyecto educativo en evolución. Sugerencias y mejoras son bienvenid
 - [Open Policy Agent](https://www.openpolicyagent.org/)
 
 ### Herramientas
+
 - [jwt.io](https://jwt.io) - Decodificador JWT
 - [OAuth 2.0 Playground](https://www.oauth.com/playground/)
 - [OPA Playground](https://play.openpolicyagent.org/)
 
 ### Seguridad
+
 - [OWASP API Security Top 10](https://owasp.org/www-project-api-security/)
 - [OAuth 2.0 Security Best Practices](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics)
 
