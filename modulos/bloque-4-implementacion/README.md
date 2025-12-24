@@ -28,7 +28,7 @@ Implementar un sistema completo de autenticación y autorización con .NET 8, Ke
 
 ## Guía de Implementación Paso a Paso
 
-### [Paso 1: Levantar Identity Provider](./paso-1-setup-idp.md)
+### [Paso 1. Levantar Identity Provider](./paso-1-setup-idp.md)
 **Duración**: 1-2 horas
 
 - Instalar Keycloak con Docker Compose

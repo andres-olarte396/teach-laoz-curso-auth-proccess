@@ -165,7 +165,7 @@ Con token de admin → 200 OK
 
 ## Casos Prácticos
 
-### Caso 1: Sistema bancario online
+### Caso 1. Sistema bancario online
 - **AuthN**: Login con usuario + contraseña + SMS 2FA
 - **AuthZ**: Solo puedes transferir desde TUS cuentas, no las de otros
 

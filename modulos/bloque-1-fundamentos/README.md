@@ -37,7 +37,7 @@ Dominar las definiciones y relación entre autenticación (AuthN) y autorizació
 
 ## Actividades Prácticas
 
-### Ejercicio 1: Diseño de Políticas RBAC
+### Ejercicio 1. Diseño de Políticas RBAC
 📝 [Ver ejercicio](./ejercicios/ejercicio-1-rbac.md)
 
 Diseña un sistema RBAC para una aplicación de gestión de proyectos con:

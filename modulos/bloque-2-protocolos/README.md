@@ -54,7 +54,7 @@ Comprender cómo funcionan OAuth2 y OpenID Connect en la práctica, dominar la e
 
 ## Actividades Prácticas
 
-### Lab 1: Configurar Identity Provider
+### Lab 1. Configurar Identity Provider
 📝 [Ver lab completo](./labs/lab-1-setup-idp.md)
 
 Configurar Keycloak o Auth0:

@@ -32,7 +32,7 @@ Al completar este curso serás capaz de:
 
 ## 📚 Contenido del Curso
 
-### [Bloque 1: Fundamentos](./modulos/bloque-1-fundamentos/)
+### [Bloque 1. Fundamentos](./modulos/bloque-1-fundamentos/)
 **Duración**: 4-6 horas
 
 - Autenticación vs Autorización
@@ -103,7 +103,7 @@ Al completar este curso serás capaz de:
 
 ## 🧪 Laboratorios Prácticos
 
-### [Lab 1: Keycloak + OAuth2 + PKCE](./labs/lab-1-keycloak-oauth-pkce/)
+### [Lab 1. Keycloak + OAuth2 + PKCE](./labs/lab-1-keycloak-oauth-pkce/)
 Configura Keycloak, implementa Authorization Code + PKCE desde una SPA.
 
 ### [Lab 2: API Gateway + Validación JWT](./labs/lab-2-gateway-jwt-validation/)
@@ -175,9 +175,9 @@ El contenido de este curso está basado en el [ROADMAP.md](./ROADMAP.md) origina
 ### Ruta de Aprendizaje Recomendada
 
 **Nivel Principiante**:
-1. Bloque 1: Fundamentos (conceptos)
+1. Bloque 1. Fundamentos (conceptos)
 2. Bloque 2: Protocolos (OAuth2, JWT)
-3. Lab 1: Keycloak + PKCE
+3. Lab 1. Keycloak + PKCE
 
 **Nivel Intermedio**:
 4. Bloque 3: Diseño en Microservicios
@@ -319,4 +319,4 @@ Este es un proyecto educativo en evolución. Sugerencias y mejoras son bienvenid
 
 **¡Bienvenido al curso! Comienza tu viaje hacia la maestría en autenticación y autorización de APIs.**
 
-[🚀 Empezar con Bloque 1: Fundamentos](./modulos/bloque-1-fundamentos/) | [📋 Ver Roadmap Completo](./ROADMAP.md)
+[🚀 Empezar con Bloque 1. Fundamentos](./modulos/bloque-1-fundamentos/) | [📋 Ver Roadmap Completo](./ROADMAP.md)

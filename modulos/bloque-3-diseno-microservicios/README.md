@@ -98,7 +98,7 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 
 ## Patrones de Implementación
 
-### Patrón 1: Gateway + Servicios (validación dual)
+### Patrón 1. Gateway + Servicios (validación dual)
 ```
 ✅ Gateway: Valida token (firma, exp, iss, aud)
 ✅ Servicios: Validan scopes/roles + autorización fina
@@ -130,7 +130,7 @@ Decidir dónde validar tokens, dónde aplicar políticas de autorización, y có
 
 ## Actividades Prácticas
 
-### Ejercicio 1: Diseñar Arquitectura
+### Ejercicio 1. Diseñar Arquitectura
 📝 [Ver ejercicio](./ejercicios/ejercicio-1-arquitectura.md)
 
 Diseña la arquitectura de seguridad para un sistema con:

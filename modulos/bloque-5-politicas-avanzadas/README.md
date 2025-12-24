@@ -60,7 +60,7 @@ Dominar modelos avanzados de autorización (ABAC, UMA), implementar flujos compl
 
 ## Casos de Uso Reales
 
-### Caso 1: Sistema de Salud (HIPAA Compliance)
+### Caso 1. Sistema de Salud (HIPAA Compliance)
 **Requisitos:**
 - Solo médicos del departamento pueden ver historiales de SUS pacientes
 - Enfermeras solo pueden ver datos básicos, no diagnósticos
@@ -234,7 +234,7 @@ public async Task ProcessJob(string jobId)
 
 ## Actividades Prácticas
 
-### Lab 1: Implementar ABAC con OPA
+### Lab 1. Implementar ABAC con OPA
 📝 [Ver lab completo](./labs/lab-1-abac-opa.md)
 
 Implementar política ABAC para sistema de gestión documental:

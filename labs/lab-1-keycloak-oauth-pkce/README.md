@@ -1,4 +1,4 @@
-# Lab 1: Keycloak + Authorization Code + PKCE
+# Lab 1. Keycloak + Authorization Code + PKCE
 
 ## 🎯 Objetivos
 
@@ -42,7 +42,7 @@ Al finalizar este lab podrás:
 
 ---
 
-## 📝 Paso 1: Levantar Keycloak
+## 📝 Paso 1. Levantar Keycloak
 
 ### 1.1 Crear docker-compose.yml
 

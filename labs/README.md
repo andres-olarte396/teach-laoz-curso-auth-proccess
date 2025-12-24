@@ -6,7 +6,7 @@ Este directorio contiene los 5 laboratorios principales del curso, diseñados pa
 
 ## 📋 Lista de Labs
 
-### [Lab 1: Keycloak + OAuth2 + PKCE](./lab-1-keycloak-oauth-pkce/)
+### [Lab 1. Keycloak + OAuth2 + PKCE](./lab-1-keycloak-oauth-pkce/)
 **Duración**: 2-3 horas  
 **Nivel**: Principiante-Intermedio  
 **Objetivos**:
